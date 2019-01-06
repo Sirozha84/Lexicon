@@ -31,15 +31,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.listView = new System.Windows.Forms.ListView();
-            this.dictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.listView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,9 +68,25 @@
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
             this.quitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.quitToolStripMenuItem.Text = "Выход";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            // 
+            // dictionaryToolStripMenuItem
+            // 
+            this.dictionaryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enterToolStripMenuItem});
+            this.dictionaryToolStripMenuItem.Name = "dictionaryToolStripMenuItem";
+            this.dictionaryToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.dictionaryToolStripMenuItem.Text = "Словарь";
+            // 
+            // enterToolStripMenuItem
+            // 
+            this.enterToolStripMenuItem.Name = "enterToolStripMenuItem";
+            this.enterToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.enterToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.enterToolStripMenuItem.Text = "Ввод";
+            this.enterToolStripMenuItem.Click += new System.EventHandler(this.enterToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -83,7 +99,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.aboutToolStripMenuItem.Text = "О программе";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
@@ -108,6 +124,11 @@
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // listView
             // 
             this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -121,31 +142,10 @@
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
-            // dictionaryToolStripMenuItem
-            // 
-            this.dictionaryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.enterToolStripMenuItem});
-            this.dictionaryToolStripMenuItem.Name = "dictionaryToolStripMenuItem";
-            this.dictionaryToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.dictionaryToolStripMenuItem.Text = "Словарь";
-            // 
-            // enterToolStripMenuItem
-            // 
-            this.enterToolStripMenuItem.Name = "enterToolStripMenuItem";
-            this.enterToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.enterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.enterToolStripMenuItem.Text = "Ввод";
-            this.enterToolStripMenuItem.Click += new System.EventHandler(this.enterToolStripMenuItem_Click);
-            // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Словарь";
             this.columnHeader1.Width = 150;
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // FormMain
             // 
@@ -160,6 +160,7 @@
             this.MinimumSize = new System.Drawing.Size(400, 300);
             this.Name = "FormMain";
             this.Text = "Lexicon";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

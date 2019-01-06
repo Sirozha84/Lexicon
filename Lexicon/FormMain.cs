@@ -15,8 +15,8 @@ namespace Lexicon
         const string wordsFile = "Words.txt";
         const string logFile = "Log.txt";
         List<string> words = new List<string>();
-        List<string> newWords = new List<string>();
-        List<string> exists = new List<string>();
+        List<WordCounter> newWords = new List<WordCounter>();
+        List<WordCounter> existsWords = new List<WordCounter>();
         int newWordsCount;
 
         public FormMain()
@@ -54,8 +54,9 @@ namespace Lexicon
 
         private void enterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int count = 0;
             newWords.Clear();
-            exists.Clear();
+            existsWords.Clear();
             //Поиск слов
             string word = "";
             foreach (char later in textBox.Text + ".") //Точка нужна для того чтоб последнее слово не терялось
@@ -72,17 +73,33 @@ namespace Lexicon
                     word = word.ToLower();
                     if (words.Find(w => w == word) == null)
                     {
-                        words.Add(word);
-                        newWordsCount++;
+                        WordCounter newWord = newWords.Find(w => w.word == word);
+                        if (newWord != null) newWord.Count++;
+                        else newWords.Add(new WordCounter(word));
+                    }
+                    else
+                    {
+                        WordCounter newWord = existsWords.Find(w => w.word == word);
+                        if (newWord != null) newWord.Count++;
+                        else existsWords.Add(new WordCounter(word));
                     }
                     word = "";
+                    count++;
                 }
+            }
+            foreach (WordCounter newWord in newWords)
+            {
+                words.Add(newWord.word);
+                newWordsCount++;
             }
             textBox.Text = "";
             //Обновление
             words.Sort();
             System.IO.File.WriteAllLines(wordsFile, words);
             RefreshList();
+            //Тут можно показать какую-нибудь статистику
+            FormStatistic form = new FormStatistic(newWords, existsWords, count);
+            form.ShowDialog();
         }
 
         void RefreshList()
@@ -94,6 +111,20 @@ namespace Lexicon
             listView.EndUpdate();
             toolStripStatusLabel.Text = "Всего слов в словаре: " + words.Count +
                 "     Сегодня добавлено: " + newWordsCount;
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Добавим информацию в лог
+            try
+            {
+                System.IO.File.AppendAllText(logFile, DateTime.Now.ToString("yyyy.MM.dd-hh:mm - ") + 
+                    "Всего слов в словаре: " + words.Count + "; Добавлено: " + newWordsCount + "\n");
+            }
+            catch
+            {
+                MessageBox.Show("Не получилось сделать запись в лог-файл", "Ошибка");
+            }
         }
     }
 }
