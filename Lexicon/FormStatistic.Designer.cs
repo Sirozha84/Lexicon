@@ -50,6 +50,7 @@
             this.listViewNew.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+            this.listViewNew.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listViewNew.Location = new System.Drawing.Point(12, 141);
             this.listViewNew.Name = "listViewNew";
             this.listViewNew.Size = new System.Drawing.Size(237, 241);
@@ -71,6 +72,7 @@
             this.listViewExists.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader3,
             this.columnHeader4});
+            this.listViewExists.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listViewExists.Location = new System.Drawing.Point(255, 141);
             this.listViewExists.Name = "listViewExists";
             this.listViewExists.Size = new System.Drawing.Size(237, 241);
@@ -90,6 +92,7 @@
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonClose.Location = new System.Drawing.Point(418, 399);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
@@ -194,6 +197,9 @@
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.listViewExists);
             this.Controls.Add(this.listViewNew);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormStatistic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Добавление новых слов";
